@@ -40,6 +40,33 @@ enum eSoundID
 	MONEY
 };
 
+
+//Texture
 #define ID_TEX_BBOX			-100
 #define ID_TEX_MISC			10
 #define ID_LEVEL_ONE_BG		20
+#define ID_TEX_SIMON		30
+#define ID_TEX_WHIP			40
+#define ID_TEX_CANDLE		50
+
+
+//Status SIMON
+#define SM_STAND_STATIC			0
+#define SM_MOVE_LEFT			1
+#define SM_SIT					2
+#define SM_JUMP					3
+#define SM_STAND_ATTACK			4
+#define SM_SIT_ATTACK			5
+#define SM_STAND_UP_STAIR		6
+#define SM_STAND_DOWN_STAIR		7
+#define SM_MOVE_UP_STAIR		8
+#define SM_MOVE_DOWN_STAIR		9
+#define SM_ATTACK_UP_STAIR		10
+#define SM_ATTACK_DOWN_STAIR	11
+#define SM_HURTED				12
+#define SM_INVISIBLE			13
+#define SM_EAT_ITEM				14
+#define SM_FALL_DOWN			15
+#define SM_THROW_WEAPON			16
+#define SM_DEAD					17
+#define SM_STAND_BACK			18

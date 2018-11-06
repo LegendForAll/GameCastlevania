@@ -24,16 +24,28 @@ CSprites *CSprites::GetInstance()
 	return __instance;
 }
 
-void CSprite::Draw(float x, float y, int alpha)
+void CSprite::Draw(float x, float y, int alpha, bool isleft)
 {
 	CGame * game = CGame::GetInstance();
-	game->Draw(x, y, texture, left, top, right, bottom, alpha);
+	game->Draw(x, y, texture, left, top, right, bottom, alpha, isleft);
 }
 
 void CSprite::Render(D3DXVECTOR3 pos, RECT rect , LPDIRECT3DTEXTURE9 tex)
 {
 	CGame *game = CGame::GetInstance();
 	game->Render(pos, rect, tex);
+}
+
+void CSprite::Render(ViewPort * viewPort, LPDIRECT3DTEXTURE9 tex)
+{
+	CGame *game = CGame::GetInstance();
+	D3DXVECTOR3 pos;
+	pos.x = 50;
+	pos.y = 50;
+	pos.z = 0;
+
+	pos = viewPort->SetPositionInViewPort(pos);
+	game->Render(pos, tex);
 }
 
 
@@ -52,7 +64,7 @@ LPSPRITE CSprites::Get(int id)
 
 CAnimation::CAnimation()
 {
-
+	this->isDoAllFrame = false;
 }
 
 CAnimation::CAnimation(int defaultTime)
@@ -74,7 +86,7 @@ void CAnimation::Add(int spriteId, DWORD time)
 	frames.push_back(frame);
 }
 
-void CAnimation::Render(float x, float y, int alpha)
+void CAnimation::Render(float x, float y, int alpha, bool isleft)
 {
 	DWORD now = GetTickCount();
 	if (currentFrame == -1) 
@@ -91,15 +103,19 @@ void CAnimation::Render(float x, float y, int alpha)
 			lastFrameTime = now;
 			if (currentFrame == frames.size())
 			{
-				currentFrame = 0;
 				isDoAllFrame = true; // Flag ve het frame
+				currentFrame = 0;
 			}
 				
 		}
 		
 	}
 
-	frames[currentFrame]->GetSprite()->Draw(x, y, alpha);
+	//	Do khi ve het frame cua 1 animation 
+	//	CURRENT FRAME => currentFrame = 0
+	//	frames[currentFrame]->GetSprite()->Draw(x, y, alpha, isleft); 
+	//	Auto render frames[0] cua animation => Load them 1 Frame cua NEW animation ma CURRENT ANIMATION nay chuyen den
+	frames[currentFrame]->GetSprite()->Draw(x, y, alpha, isleft);
 }
 
 CAnimations * CAnimations::__instance = NULL;

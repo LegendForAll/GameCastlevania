@@ -49,8 +49,9 @@ class CGame
 public:
 	//void InitKeyboard(LPKEYEVENTHANDLER handler);
 	void Init(HWND hWnd);
-	void Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom, int alpha = 255);
+	void Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom, int alpha = 255, bool isleft = false);
 	void Render(D3DXVECTOR3 pos, RECT rect, LPDIRECT3DTEXTURE9 texture);
+	void Render(D3DXVECTOR3 pos, LPDIRECT3DTEXTURE9 texture);
 
 	//int IsKeyDown(int KeyCode);
 	//void ProcessKeyboard();

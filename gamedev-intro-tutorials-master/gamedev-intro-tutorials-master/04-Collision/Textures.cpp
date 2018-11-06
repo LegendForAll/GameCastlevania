@@ -19,6 +19,9 @@ void CTextures::loadResources()
 	this->Add(ID_TEX_MISC, L"Resource\\sprites\\ground_test.png", D3DCOLOR_XRGB(176, 224, 248));
 	this->Add(ID_TEX_BBOX, L"textures\\bbox.png", D3DCOLOR_XRGB(255, 255, 255));
 	this->Add(ID_LEVEL_ONE_BG, L"Resource\\sprites\\lv1.s", D3DCOLOR_XRGB(255, 0, 255));
+	this->Add(ID_TEX_SIMON, L"Resource\\sprites\\Simon\\Simon_ver_editted.png", D3DCOLOR_XRGB(255, 0, 255));
+	this->Add(ID_TEX_WHIP, L"Resource\\sprites\\Weapons\\WHIP.png", D3DCOLOR_XRGB(255, 0, 255));
+	this->Add(ID_TEX_CANDLE, L"Resource\\sprites\\Ground\\0.png", D3DCOLOR_XRGB(255, 0, 255));
 }
 
 CTextures *CTextures::GetInstance()

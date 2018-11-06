@@ -19,6 +19,18 @@ class CMario : public CGameObject
 	int level;
 	int untouchable;
 	DWORD untouchable_start;
+
+	//Current Animation
+	int ani = SM_STAND_STATIC;
+
+	//Flags
+	bool isAttack = false;
+	bool isGround = true;
+
+	//LPDIRECT3DTEXTURE9 texture;		//texture SIMON
+	//CSprites * sprites;				//Manager sprite SIMON
+	//CAnimations * animation;		//Manager animation SIMON
+
 public: 
 	CMario() : CGameObject()
 	{
@@ -26,7 +38,7 @@ public:
 		untouchable = 0;
 	}
 
-	void LoadResource();
+	void LoadAnimation();
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *colliable_objects = NULL);
 	virtual void Render();
 	void SetState(int state);
@@ -35,4 +47,5 @@ public:
 
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	void CheckKey();
+	void KeyEventHandler();
 };

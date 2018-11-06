@@ -15,13 +15,14 @@ class CSprite
 	int right;
 	int bottom;
 	float width = 640, height = 256;	//chieu dai, chieu rong 1 sprite (TileMap)
-	D3DCOLOR color;			//Mau (TileMap)
+	D3DCOLOR color;						//Mau (TileMap)
 
 	LPDIRECT3DTEXTURE9 texture;
 public: 
 	CSprite(int id, int left, int top, int right, int bottom, LPDIRECT3DTEXTURE9 tex);
-	void Draw(float x, float y, int alpha = 255);
+	void Draw(float x, float y, int alpha = 255, bool isleft = false);
 	void Render(D3DXVECTOR3 pos, RECT rect , LPDIRECT3DTEXTURE9 tex);
+	void Render(ViewPort *viewPort, LPDIRECT3DTEXTURE9 tex);
 
 	float GetWidth()	{ return width; }
 	float GetHeight()	{ return height; }
@@ -69,8 +70,9 @@ class CAnimation
 	int defaultTime;
 	int currentFrame;
 
-	bool isDoAllFrame;		//Flag xac dinh ve het frame
+	bool isDoAllFrame = false;		//Flag xac dinh ve het frame
 	float timeDeplay;		//Thoi gian song cua 1 animation
+	bool isLeft;			
 
 	vector<LPANIMATION_FRAME> frames;
 
@@ -81,7 +83,7 @@ public:
 	void Add(int spriteId, DWORD time = 0);
 
 	//Render tung frame 1 trong vector animation frame
-	void Render(float x, float y, int alpha=255);
+	void Render(float x, float y, int alpha = 255, bool left = false);
 
 	//kiem tra trang thai hoang thanh cua cac frame trong animation
 	bool CheckDoAllFrame() { return isDoAllFrame; }

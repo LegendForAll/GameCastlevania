@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "debug.h"
+#include <d3dx9math.h>
 
 CGame * CGame::__instance = NULL;
 
@@ -65,7 +66,7 @@ void CGame::Init(HWND hWnd)
 /*
 	Utility function to wrap LPD3DXSPRITE::Draw 
 */
-void CGame::Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom, int alpha)
+void CGame::Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom, int alpha, bool isleft)
 {
 	D3DXVECTOR3 p(x, y, 0);
 	RECT r; 
@@ -74,13 +75,37 @@ void CGame::Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top
 	r.right = right;
 	r.bottom = bottom;
 
+	//Test quay sprite
+	D3DXVECTOR2 rotate;
+	D3DXMATRIX oldTransform = D3DXMATRIX{};
+	D3DXMATRIX newTransform = D3DXMATRIX{};
+
+	spriteHandler->GetTransform(&oldTransform);
+	D3DXVECTOR2 center = D3DXVECTOR2((x)+(right-left)/2, (y)+(bottom-top)/2);
+
+	if (isleft == true)
+		rotate = { -1 , 1 };
+	else
+		rotate = { 1 , 1 };
+
+	D3DXMatrixTransformation2D(&newTransform, &center, 0.0f, &rotate, NULL, 0.0f, NULL);
+
+	//Cai dat matrix quay sprite
+	spriteHandler->SetTransform(&newTransform);
 	//Ham ve mac dinh cua Direct3D
 	spriteHandler->Draw(texture, &r, NULL, &p, D3DCOLOR_ARGB(alpha, 255, 255, 255));
+	//Cai dat matrix quay sprite
+	spriteHandler->SetTransform(&oldTransform);
 }
 
 void CGame::Render(D3DXVECTOR3 pos, RECT rect, LPDIRECT3DTEXTURE9 texture)
 {
 	spriteHandler->Draw(texture, &rect, NULL, &pos, D3DCOLOR_ARGB(255, 255, 255, 255));
+}
+
+void CGame::Render(D3DXVECTOR3 pos, LPDIRECT3DTEXTURE9 texture)
+{
+	spriteHandler->Draw(texture, NULL, NULL, &pos, D3DCOLOR_ARGB(255, 255, 255, 255));
 }
 
 

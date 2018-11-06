@@ -124,6 +124,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Brick.h" />
+    <ClInclude Include="Candle.h" />
     <ClInclude Include="debug.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="dsutil.h" />
@@ -136,6 +137,7 @@
     <ClInclude Include="Mario.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Sprites.h" />
+    <ClInclude Include="StaticObject.h" />
     <ClInclude Include="Textures.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="ViewPort.h" />
@@ -143,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Brick.cpp" />
+    <ClCompile Include="Candle.cpp" />
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="dsutil.cpp" />
     <ClCompile Include="dxaudio.cpp" />
@@ -155,6 +158,7 @@
     <ClCompile Include="Mario.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Sprites.cpp" />
+    <ClCompile Include="StaticObject.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="ViewPort.cpp" />
